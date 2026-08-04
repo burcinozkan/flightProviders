@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://flightsearch.com/providera"
+        xmlns:tns="http://flightsearch.com/providera"
+        elementFormDefault="qualified">
+
+
+    <!-- ================================================================= -->
+    <!--  Flight Model                                                     -->
+    <!-- ================================================================= -->
+
+    <xs:complexType name="Flight">
+        <xs:sequence>
+            <xs:element name="flightNo" type="xs:string" />
+            <xs:element name="origin" type="xs:string" />
+            <xs:element name="destination" type="xs:string" />
+            <xs:element name="departuredatetime" type="xs:dateTime" />
+            <xs:element name="arrivaldatetime" type="xs:dateTime" />
+            <xs:element name="price" type="xs:decimal" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- ================================================================= -->
+    <!-- 1. REQUEST                                                        -->
+    <!-- ================================================================= -->
+
+
+
+    <xs:element name="AvailabilitySearchRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="origin" type="xs:string"/>
+                <xs:element name="destination" type="xs:string"/>
+                <xs:element name="departureDate" type="xs:dateTime"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- ================================================================= -->
+    <!-- RESPONSE                                                          -->
+    <!-- ================================================================= -->
+
+    <xs:element name="AvailabilitySearchResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="hasError" type="xs:boolean"/>
+                <xs:element name="FlightOptions" type="tns:Flight" minOccurs="0" maxOccurs="unbounded"/>
+                <xs:element name="errorMessage" type="xs:string" minOccurs="0"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+</xs:schema>
+
