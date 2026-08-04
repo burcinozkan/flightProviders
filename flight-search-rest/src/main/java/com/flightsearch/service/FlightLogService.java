@@ -8,7 +8,6 @@ import com.flightsearch.repository.FlightSearchLogRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Service
 public class FlightLogService {
@@ -28,11 +27,21 @@ public class FlightLogService {
             Object response
     ){
 
+        save(endpoint, request, response, true, null);
+    }
+
+    public void saveFailure(String endpoint, Object request, Object response, String errorMessage) {
+        save(endpoint, request, response, false, errorMessage);
+    }
+
+    private void save(String endpoint, Object request, Object response, boolean success, String errorMessage) {
+
         FlightSearchLog log = new FlightSearchLog();
         log.setEndpoint(endpoint);
         log.setRequestPayload(objectMapper.writeValueAsString(request));
         log.setResponsePayload(objectMapper.writeValueAsString(response));
-        log.setSuccess(true);
+        log.setSuccess(success);
+        log.setErrorMessage(errorMessage);
         log.setCreatedAt(LocalDateTime.now());
 
         repository.save(log);
