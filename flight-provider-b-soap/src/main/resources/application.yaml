@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: flight-provider-b-soap
+server:
+  port: 8081
