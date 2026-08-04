@@ -38,7 +38,6 @@ public class FlightSearchService {
     }
 
     public List<FlightDto> getAllFlights(FlightSearchRequest request){
-        UUID searchId = UUID.randomUUID();
         AvailabilitySearchResponse providerAResponse = providerAClient.search(request);
 
 
