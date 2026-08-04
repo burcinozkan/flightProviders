@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: flight-search-rest
+  config:
+    import: optional:file:.env[.properties]
+
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+soap:
+  provider-a:
+    url: http://localhost:8080/ws
+
+  provider-b:
+    url: http://localhost:8081/ws
+
+server:
+  port: 8082
